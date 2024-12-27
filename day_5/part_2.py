@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-def fix_update(update: list, before_dict : defaultdict[set]):
+def fix_update(update: list, before_dict: defaultdict[set]):
     remaining_nums = set(update)
     new_update = list()
     while len(remaining_nums) > 0:
@@ -11,12 +11,12 @@ def fix_update(update: list, before_dict : defaultdict[set]):
                 remaining_nums.remove(num)
                 break
 
-    return int(new_update[len(new_update)//2])
+    return int(new_update[len(new_update) // 2])
 
 
-with open('day_5/input.txt') as f:
+with open("day_5/input.txt") as f:
     raw = f.readlines()
-    
+
     curr_line = 0
 
     before_dict = defaultdict(set)
@@ -26,21 +26,21 @@ with open('day_5/input.txt') as f:
         if not line:
             break
         else:
-            num_1, num_2 = line.split('|')
+            num_1, num_2 = line.split("|")
             before_dict[num_1].add(num_2)
 
         curr_line += 1
-    
+
     middle_sum = 0
 
-    for update in raw[curr_line+1:]:
-        update = update.strip().split(',')
-        
+    for update in raw[curr_line + 1 :]:
+        update = update.strip().split(",")
+
         seen = set()
         for num in update:
             seen.add(num)
             if seen & before_dict[num]:
-               middle_sum += fix_update(update, before_dict)
-               break
-    
+                middle_sum += fix_update(update, before_dict)
+                break
+
     print(middle_sum)
