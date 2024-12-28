@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import os
 
 def fix_update(update: list, before_dict: defaultdict[set]):
     remaining_nums = set(update)
@@ -14,7 +14,7 @@ def fix_update(update: list, before_dict: defaultdict[set]):
     return int(new_update[len(new_update) // 2])
 
 
-with open("day_5/input.txt") as f:
+with open(f"{os.path.dirname(__file__)}/input.txt") as f:
     raw = f.readlines()
 
     curr_line = 0
